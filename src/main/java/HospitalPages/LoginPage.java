@@ -5,12 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage {
-    WebDriver driver;
-    public LoginPage(WebDriver driver){this.driver=driver;}
-    By username = By.cssSelector("#identification");
-    By password = By.cssSelector("#password");
-    By pressLogin = By.cssSelector("#ember412 > div > form > div.signin-contents > button");
-    By error = By.cssSelector("#ember412 > div > form > div.signin-contents > div.alert.alert-danger.form-signin-alert");
+    private WebDriver driver;
+    public LoginPage(WebDriver driver){this.driver = driver;}
+    private By username = By.cssSelector("#identification");
+    private By password = By.cssSelector("#password");
+    private By pressLogin = By.cssSelector("#ember412 > div > form > div.signin-contents > button");
+    private By error = By.cssSelector("#ember412 > div > form > div.signin-contents > div.alert.alert-danger.form-signin-alert");
 
     public WebElement Email (){
         return  driver.findElement(username);

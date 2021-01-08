@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class Logout extends BaseTest {
     @Test
-    public void logOut () throws InterruptedException {
+    public void logOut () {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginpage = new LoginPage(driver);
         String validusername = TestData.USERNAME.getTestData();
@@ -21,7 +21,6 @@ public class Logout extends BaseTest {
         mainPage.logOut().click();
         wait.until(ExpectedConditions.urlContains("#/login"));
         Assert.assertTrue(driver.getCurrentUrl().contains("#/login"));
-
     }
 
     /*public static void main (String[]args) throws InterruptedException {

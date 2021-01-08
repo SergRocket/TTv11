@@ -1,18 +1,17 @@
 package HospitalTests;
 import HospitalPages.LoginPage;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class InvalidLogin extends BaseTest {
     @Test
-    public void invalidlogin() throws InterruptedException {
+    public void invalidLogin () {
         LoginPage loginPage = new LoginPage(driver);
-        String invalidusername = TestData.INVALIDUSERNAME.getTestData();
-        String invalidpassword = TestData.INVALIDPASSWORD.getTestData();
-        loginPage.Email().sendKeys(invalidusername);
-        loginPage.Password().sendKeys(invalidpassword);
+        String invalidUsername = TestData.INVALIDUSERNAME.getTestData();
+        String invalidPassword = TestData.INVALIDPASSWORD.getTestData();
+        loginPage.Email().sendKeys(invalidUsername);
+        loginPage.Password().sendKeys(invalidPassword);
         loginPage.ButtonClick().click();
         wait.until(ExpectedConditions.visibilityOf(loginPage.Error()));
         boolean errorMessage = loginPage.Error().isDisplayed();

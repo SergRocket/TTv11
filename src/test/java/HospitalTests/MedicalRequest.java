@@ -4,18 +4,15 @@ import HospitalPages.LoginPage;
 import HospitalPages.MedicationPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MedicalRequest extends BaseTest {
 
     @Test
-    public void medicatonrequest () throws InterruptedException {
+    public void medicationRequest () {
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         LoginPage loginPage = new LoginPage(driver);
         String validusername = TestData.USERNAME.getTestData();

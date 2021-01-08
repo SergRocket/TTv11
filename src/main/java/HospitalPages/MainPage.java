@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class MainPage {
-    public MainPage (WebDriver driver){this.driver=driver;}
-    WebDriver driver;
-    By CogWheel = By.cssSelector("#ember412 > nav > header > a.settings-trigger");
-    By LogoutButton = By.cssSelector("#ember412 > nav > header > nav > a.logout");
-    By Imageafterlogin = By.cssSelector("#ember737");
+    public MainPage (WebDriver driver){this.driver = driver;}
+    private WebDriver driver;
+    private By CogWheel = By.cssSelector("#ember412 > nav > header > a.settings-trigger");
+    private By LogoutButton = By.cssSelector("#ember412 > nav > header > nav > a.logout");
+    private By Imageafterlogin = By.cssSelector("#ember737");
 
     public WebElement cogWheel (){
         return driver.findElement(CogWheel);
