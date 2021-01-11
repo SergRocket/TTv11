@@ -7,9 +7,12 @@ import org.openqa.selenium.WebElement;
 public class MainPage {
     public MainPage (WebDriver driver){this.driver = driver;}
     private WebDriver driver;
+    //"div[role='alert']"
+    //"button[type='submit']"
+
     private By CogWheel = By.cssSelector("#ember412 > nav > header > a.settings-trigger");
     private By LogoutButton = By.cssSelector("#ember412 > nav > header > nav > a.logout");
-    private By Imageafterlogin = By.cssSelector("#ember737");
+    private By Imageafterlogin = By.cssSelector("#ember767");
 
     public WebElement cogWheel (){
         return driver.findElement(CogWheel);
@@ -17,5 +20,5 @@ public class MainPage {
     public WebElement logOut (){
         return driver.findElement(LogoutButton);
     }
-    public WebElement imageafterLog (){return driver.findElement(Imageafterlogin);}
+    public WebElement imageAfterLog (){return driver.findElement(Imageafterlogin);}
 }

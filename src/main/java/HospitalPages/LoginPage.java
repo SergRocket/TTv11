@@ -9,22 +9,22 @@ public class LoginPage {
     public LoginPage(WebDriver driver){this.driver = driver;}
     private By username = By.cssSelector("#identification");
     private By password = By.cssSelector("#password");
-    private By pressLogin = By.cssSelector("#ember412 > div > form > div.signin-contents > button");
-    private By error = By.cssSelector("#ember412 > div > form > div.signin-contents > div.alert.alert-danger.form-signin-alert");
+    private By pressLogin = By.cssSelector("button[type='submit']");
+    private By errorMassage = By.cssSelector("div[role='alert']");
 
     public WebElement Email (){
         return  driver.findElement(username);
     }
 
-    public WebElement Password (){
+    public WebElement password (){
         return driver.findElement(password);
     }
 
-    public WebElement ButtonClick (){
+    public WebElement buttonClick (){
         return driver.findElement(pressLogin);
     }
 
-    public WebElement Error () {
-        return driver.findElement(error);
+    public WebElement errorBlock () {
+        return driver.findElement(errorMassage);
     }
 }

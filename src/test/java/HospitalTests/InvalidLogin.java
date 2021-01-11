@@ -11,10 +11,10 @@ public class InvalidLogin extends BaseTest {
         String invalidUsername = TestData.INVALIDUSERNAME.getTestData();
         String invalidPassword = TestData.INVALIDPASSWORD.getTestData();
         loginPage.Email().sendKeys(invalidUsername);
-        loginPage.Password().sendKeys(invalidPassword);
-        loginPage.ButtonClick().click();
-        wait.until(ExpectedConditions.visibilityOf(loginPage.Error()));
-        boolean errorMessage = loginPage.Error().isDisplayed();
+        loginPage.password().sendKeys(invalidPassword);
+        loginPage.buttonClick().click();
+        wait.until(ExpectedConditions.visibilityOf(loginPage.errorBlock()));
+        boolean errorMessage = loginPage.errorBlock().isDisplayed();
         if (errorMessage)
             System.out.print("The error message is shown");
         else System.out.print("The error message is missing");

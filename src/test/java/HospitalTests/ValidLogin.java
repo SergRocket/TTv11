@@ -13,9 +13,9 @@ public class ValidLogin extends BaseTest {
         String validUsername = TestData.USERNAME.getTestData();
         String validPassword = TestData.PASSWORD.getTestData();
         LP.Email().sendKeys(validUsername);
-        LP.Password().sendKeys(validPassword);
-        LP.ButtonClick().click();
-        wait.until(ExpectedConditions.visibilityOf(MP.imageafterLog()));
+        LP.password().sendKeys(validPassword);
+        LP.buttonClick().click();
+        wait.until(ExpectedConditions.visibilityOf(MP.imageAfterLog()));
         wait.until(ExpectedConditions.urlContains("#/patients"));
     }
     /*public static void main (String[] args) throws InterruptedException {

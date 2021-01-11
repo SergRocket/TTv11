@@ -14,8 +14,8 @@ public class Logout extends BaseTest {
         String validusername = TestData.USERNAME.getTestData();
         String validpassword = TestData.PASSWORD.getTestData();
         loginpage.Email().sendKeys(validusername);
-        loginpage.Password().sendKeys(validpassword);
-        loginpage.ButtonClick().click();
+        loginpage.password().sendKeys(validpassword);
+        loginpage.buttonClick().click();
         wait.until(ExpectedConditions.visibilityOfAllElements(mainPage.cogWheel()));
         mainPage.cogWheel().click();
         mainPage.logOut().click();

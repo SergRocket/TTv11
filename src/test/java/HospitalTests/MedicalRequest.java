@@ -18,62 +18,62 @@ public class MedicalRequest extends BaseTest {
         String validusername = TestData.USERNAME.getTestData();
         String validpassword = TestData.PASSWORD.getTestData();
         loginPage.Email().sendKeys(validusername);
-        loginPage.Password().sendKeys(validpassword);
-        loginPage.ButtonClick().click();
+        loginPage.password().sendKeys(validpassword);
+        loginPage.buttonClick().click();
         MedicationPage medicationPage = new MedicationPage(driver);
-        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.PatienT(), medicationPage.MedicatioN()));
-        medicationPage.MedSec().click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.Reque(), medicationPage.CompleteD(),
-                medicationPage.ReturnMedic(), medicationPage.Newrequest()));
-        medicationPage.Newrequest().click();
-        medicationPage.PatienT().click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.patients(), medicationPage.medication()));
+        medicationPage.medSec().click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.reque(), medicationPage.completed(),
+                medicationPage.returnMedic(), medicationPage.newRequest()));
+        medicationPage.newRequest().click();
+        medicationPage.patient().click();
         String searchFor = TestData.SEARCHFOR.getTestData();
-        medicationPage.PatienT().sendKeys(searchFor);
+        medicationPage.patient().sendKeys(searchFor);
         int i=1;
         while(i<3){
-            medicationPage.PatienT().sendKeys(Keys.ARROW_DOWN);
+            medicationPage.patient().sendKeys(Keys.ARROW_DOWN);
             i++;
         }
-        medicationPage.PatienT().sendKeys(Keys.ENTER);
-        medicationPage.DateVisit().click();
+        medicationPage.patient().sendKeys(Keys.ENTER);
+        medicationPage.dateVisit().click();
         int c=1;
         while(c<4) {
-            medicationPage.DateVisit().sendKeys(Keys.ARROW_DOWN);
+            medicationPage.dateVisit().sendKeys(Keys.ARROW_DOWN);
             c++;
         }
-        medicationPage.DateVisit().sendKeys(Keys.ENTER);
+        medicationPage.dateVisit().sendKeys(Keys.ENTER);
         String medication = TestData.MEDICATION.getTestData();
-        medicationPage.MedicatioN().sendKeys(medication);
-        medicationPage.MedicatioN().sendKeys(Keys.ARROW_DOWN);
-        medicationPage.MedicatioN().sendKeys(Keys.ENTER);
+        medicationPage.medication().sendKeys(medication);
+        medicationPage.medication().sendKeys(Keys.ARROW_DOWN);
+        medicationPage.medication().sendKeys(Keys.ENTER);
         String prescription = TestData.PRESCRIPTION.getTestData();
-        medicationPage.PrescriptioN().sendKeys(prescription);
-        medicationPage.PrescrDate().click();
+        medicationPage.prescription().sendKeys(prescription);
+        medicationPage.prescrDate().click();
         wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.weekDay()));
         medicationPage.weekDay().click();
-        medicationPage.PrescrDate().sendKeys(Keys.ARROW_LEFT);
-        medicationPage.PrescrDate().sendKeys(Keys.ENTER);
+        medicationPage.prescrDate().sendKeys(Keys.ARROW_LEFT);
+        medicationPage.prescrDate().sendKeys(Keys.ENTER);
         Random rand = new Random();
         int qr = rand.nextInt(1)+3;
         int qrf = rand.nextInt(5)+8;
         String QR = Integer.toString(qr);
         String QRef = Integer.toString(qrf);
-        medicationPage.QuantitY().sendKeys(QR);
-        medicationPage.RefilS().sendKeys(QRef);
-        medicationPage.Addbutton().click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.ModalWindow(), medicationPage.OKbut(),
-                medicationPage.CloseBut()));
-        boolean popUp = (medicationPage.ModalWindow().isDisplayed() && medicationPage.OKbut().isDisplayed() &&
-                medicationPage.CloseBut().isDisplayed());
+        medicationPage.quantity().sendKeys(QR);
+        medicationPage.refils().sendKeys(QRef);
+        medicationPage.addButton().click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.modalWindow(), medicationPage.oKBut(),
+                medicationPage.closeBut()));
+        boolean popUp = (medicationPage.modalWindow().isDisplayed() && medicationPage.oKBut().isDisplayed() &&
+                medicationPage.closeBut().isDisplayed());
         if (popUp){
             System.out.print("The pop is displayed after clicking Add button ");
         } else {
             System.out.println("The pop up is not shown after clicking Add button");
         }
-        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.ModalWindow()));
-        medicationPage.OKbut().click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.modalWindow()));
+        medicationPage.oKBut().click();
         try {
-            medicationPage.ModalWindow().isDisplayed();
+            medicationPage.modalWindow().isDisplayed();
         } catch (Exception e){
             System.out.println(" The pop up is gone, as expected");
         }
