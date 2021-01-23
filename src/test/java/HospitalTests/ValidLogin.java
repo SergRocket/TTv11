@@ -12,9 +12,7 @@ public class ValidLogin extends BaseTest {
         MainPage MP = new MainPage(driver);
         String validUsername = TestData.USERNAME.getTestData();
         String validPassword = TestData.PASSWORD.getTestData();
-        LP.Email().sendKeys(validUsername);
-        LP.password().sendKeys(validPassword);
-        LP.buttonClick().click();
+        LP.login(validUsername, validPassword);
         wait.until(ExpectedConditions.visibilityOf(MP.imageAfterLog()));
         wait.until(ExpectedConditions.urlContains("#/patients"));
     }

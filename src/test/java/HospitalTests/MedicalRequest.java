@@ -17,9 +17,7 @@ public class MedicalRequest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         String validusername = TestData.USERNAME.getTestData();
         String validpassword = TestData.PASSWORD.getTestData();
-        loginPage.Email().sendKeys(validusername);
-        loginPage.password().sendKeys(validpassword);
-        loginPage.buttonClick().click();
+        loginPage.login(validusername, validpassword);
         MedicationPage medicationPage = new MedicationPage(driver);
         wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.patients(), medicationPage.medication()));
         medicationPage.medSec().click();
