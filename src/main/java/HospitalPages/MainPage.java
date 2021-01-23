@@ -4,21 +4,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MainPage {
-    public MainPage (WebDriver driver){this.driver = driver;}
-    private WebDriver driver;
-    //"div[role='alert']"
-    //"button[type='submit']"
-
+public class MainPage extends BasePage {
     private By CogWheel = By.cssSelector("#ember412 > nav > header > a.settings-trigger");
     private By LogoutButton = By.cssSelector("#ember412 > nav > header > nav > a.logout");
     private By Imageafterlogin = By.cssSelector("#ember767");
 
-    public WebElement cogWheel (){
+    public MainPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public WebElement cogWheel() {
         return driver.findElement(CogWheel);
     }
-    public WebElement logOut (){
+
+    public WebElement logOut() {
         return driver.findElement(LogoutButton);
     }
-    public WebElement imageAfterLog (){return driver.findElement(Imageafterlogin);}
+
+    public WebElement imageAfterLog() {
+        return driver.findElement(Imageafterlogin);
+    }
 }
