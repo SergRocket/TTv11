@@ -1,18 +1,19 @@
-package HospitalTests;
+package qa.hospital;
 
-import HospitalPages.LoginPage;
-import HospitalPages.MainPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import qa.hospital.pages.LoginPage;
+import qa.hospital.pages.MainPage;
+import qa.hospital.utils.AppConfig;
 
 public class Logout extends BaseTest {
     @Test
     public void logOut () {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginpage = new LoginPage(driver);
-        String validusername = TestData.USERNAME.getTestData();
-        String validpassword = TestData.PASSWORD.getTestData();
+        String validusername = AppConfig.USERNAME;
+        String validpassword = AppConfig.PASSWORD;
         loginpage.login(validusername, validpassword);
         wait.until(ExpectedConditions.visibilityOfAllElements(mainPage.cogWheel()));
         mainPage.cogWheel().click();

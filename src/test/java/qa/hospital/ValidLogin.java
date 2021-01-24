@@ -1,8 +1,10 @@
-package HospitalTests;
-import HospitalPages.LoginPage;
-import HospitalPages.MainPage;
+package qa.hospital;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
+import qa.hospital.pages.LoginPage;
+import qa.hospital.pages.MainPage;
+import qa.hospital.utils.AppConfig;
 
 public class ValidLogin extends BaseTest {
 
@@ -10,8 +12,8 @@ public class ValidLogin extends BaseTest {
     public void validLog () {
         LoginPage LP = new LoginPage(driver);
         MainPage MP = new MainPage(driver);
-        String validUsername = TestData.USERNAME.getTestData();
-        String validPassword = TestData.PASSWORD.getTestData();
+        String validUsername = AppConfig.USERNAME;
+        String validPassword = AppConfig.PASSWORD;
         LP.login(validUsername, validPassword);
         wait.until(ExpectedConditions.visibilityOf(MP.imageAfterLog()));
         wait.until(ExpectedConditions.urlContains("#/patients"));

@@ -1,10 +1,11 @@
-package HospitalPages;
+package qa.hospital.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import qa.hospital.utils.AppConfig;
 
 import java.time.Duration;
 
@@ -14,7 +15,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(9));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(AppConfig.TIMEOUT));
         PageFactory.initElements(driver, this);
     }
 

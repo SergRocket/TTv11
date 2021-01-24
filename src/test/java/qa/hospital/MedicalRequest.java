@@ -1,11 +1,13 @@
-package HospitalTests;
+package qa.hospital;
 
-import HospitalPages.LoginPage;
-import HospitalPages.MedicationPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import qa.hospital.pages.LoginPage;
+import qa.hospital.pages.MedicationPage;
+import qa.hospital.utils.AppConfig;
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -15,8 +17,8 @@ public class MedicalRequest extends BaseTest {
     public void medicationRequest () {
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         LoginPage loginPage = new LoginPage(driver);
-        String validusername = TestData.USERNAME.getTestData();
-        String validpassword = TestData.PASSWORD.getTestData();
+        String validusername = AppConfig.USERNAME;
+        String validpassword = AppConfig.PASSWORD;
         loginPage.login(validusername, validpassword);
         MedicationPage medicationPage = new MedicationPage(driver);
         wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.patients(), medicationPage.medication()));
@@ -25,7 +27,7 @@ public class MedicalRequest extends BaseTest {
                 medicationPage.returnMedic(), medicationPage.newRequest()));
         medicationPage.newRequest().click();
         medicationPage.patient().click();
-        String searchFor = TestData.SEARCHFOR.getTestData();
+        String searchFor = AppConfig.SEARCHFOR;
         medicationPage.patient().sendKeys(searchFor);
         int i=1;
         while(i<3){
@@ -40,11 +42,11 @@ public class MedicalRequest extends BaseTest {
             c++;
         }
         medicationPage.dateVisit().sendKeys(Keys.ENTER);
-        String medication = TestData.MEDICATION.getTestData();
+        String medication = AppConfig.MEDICATION;
         medicationPage.medication().sendKeys(medication);
         medicationPage.medication().sendKeys(Keys.ARROW_DOWN);
         medicationPage.medication().sendKeys(Keys.ENTER);
-        String prescription = TestData.PRESCRIPTION.getTestData();
+        String prescription = AppConfig.PRESCRIPTION;
         medicationPage.prescription().sendKeys(prescription);
         medicationPage.prescrDate().click();
         wait.until(ExpectedConditions.visibilityOfAllElements(medicationPage.weekDay()));
