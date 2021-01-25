@@ -1,33 +1,19 @@
 package HospitalTests;
 
-import HospitalPages.LoginPage;
-import HospitalPages.MainPage;
+import HospitalPages.pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.AppConfig;
 
 public class Logout extends BaseTest {
     @Test
-    public void logOut () {
-        MainPage mainPage = new MainPage(driver);
+    public void logOut() {
         LoginPage loginpage = new LoginPage(driver);
-        String validusername = TestData.USERNAME.getTestData();
-        String validpassword = TestData.PASSWORD.getTestData();
-        loginpage.Email().sendKeys(validusername);
-        loginpage.password().sendKeys(validpassword);
-        loginpage.buttonClick().click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(mainPage.cogWheel()));
-        mainPage.cogWheel().click();
-        mainPage.logOut().click();
+        String validUsername = AppConfig.USERNAME;
+        String validPassword = AppConfig.PASSWORD;
+        loginpage.login(validUsername, validPassword);
+        loginpage.logout();
         wait.until(ExpectedConditions.urlContains("#/login"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("#/login"));
     }
-
-    /*public static void main (String[]args) throws InterruptedException {
-        Logout LO = new Logout();
-        LO.BeforeLogin();
-        LO.ValidLog();
-        LO.LogOut();
-        LO.ShuttingDown();
-    }*/
 }

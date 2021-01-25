@@ -1,29 +1,17 @@
 package HospitalTests;
-import HospitalPages.LoginPage;
-import HospitalPages.MainPage;
+import HospitalPages.pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
+import utils.AppConfig;
 
 public class ValidLogin extends BaseTest {
 
     @Test
     public void validLog () {
-        LoginPage LP = new LoginPage(driver);
-        MainPage MP = new MainPage(driver);
-        String validUsername = TestData.USERNAME.getTestData();
-        String validPassword = TestData.PASSWORD.getTestData();
-        LP.Email().sendKeys(validUsername);
-        LP.password().sendKeys(validPassword);
-        LP.buttonClick().click();
-        wait.until(ExpectedConditions.visibilityOf(MP.imageAfterLog()));
+        LoginPage loginPage = new LoginPage(driver);
+        String validUsername = AppConfig.USERNAME;
+        String validPassword = AppConfig.PASSWORD;
+        loginPage.login(validUsername, validPassword);
         wait.until(ExpectedConditions.urlContains("#/patients"));
     }
-    /*public static void main (String[] args) throws InterruptedException {
-        ValidLogin VL = new ValidLogin();
-        VL.BeforeLogin();
-        VL.ValidLog();
-        VL.ShuttingDown();
-
-    }*/
-
 }

@@ -1,31 +1,19 @@
 package HospitalTests;
-import HospitalPages.LoginPage;
+import HospitalPages.pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.AppConfig;
 
 public class InvalidLogin extends BaseTest {
     @Test
     public void invalidLogin () {
         LoginPage loginPage = new LoginPage(driver);
-        String invalidUsername = TestData.INVALIDUSERNAME.getTestData();
-        String invalidPassword = TestData.INVALIDPASSWORD.getTestData();
-        loginPage.Email().sendKeys(invalidUsername);
-        loginPage.password().sendKeys(invalidPassword);
-        loginPage.buttonClick().click();
-        wait.until(ExpectedConditions.visibilityOf(loginPage.errorBlock()));
-        boolean errorMessage = loginPage.errorBlock().isDisplayed();
-        if (errorMessage)
-            System.out.print("The error message is shown");
-        else System.out.print("The error message is missing");
+        String invalidUsername = AppConfig.INVALIDUSERNAME;
+        String invalidPassword = AppConfig.INVALIDPASSWORD;
+        loginPage.login(invalidUsername, invalidPassword);
+        final String error = loginPage.getErrorMessage();
+        Assert.assertEquals(error, "Username or password is incorrect.");
         Assert.assertTrue(driver.getCurrentUrl().contains("#/login"));
     }
-
-    /*public static void main (String [] args)throws Exception {
-        InvalidLogin IL = new InvalidLogin();
-        IL.BeforeLogin();
-        IL.Invalidlogin();
-        IL.ShuttingDown();
-    }*/
-
 }
