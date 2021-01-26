@@ -14,10 +14,10 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
     @FindBy(css = "div[role='alert']")
     private WebElement errorMassage;
-    /*@FindBy(css = )
-
-    @FindBy(css = )
-*/
+    @FindBy(css ="#ember412 > nav > header > a.settings-trigger")
+    private WebElement cogWheel;
+    @FindBy(css = "#ember412 > nav > header > nav > a.logout")
+    private WebElement logoutButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -36,9 +36,9 @@ public class LoginPage extends BasePage {
     }
 
     public void logOut(){
-        /*wait.until(ExpectedConditions.visibilityOfAllElements(cogWheel));
+        wait.until(ExpectedConditions.visibilityOfAllElements(cogWheel));
         cogWheel.click();
-        logOut.click();*/
+        logoutButton.click();
     }
 
 

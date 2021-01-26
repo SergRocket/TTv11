@@ -48,9 +48,7 @@ public class MedicationPage extends BasePage {
     @FindBy(css="#ember2963 > div > div > div > div.modal-footer > button")
     private WebElement oKButton;
 
-    public MedicationPage(WebDriver driver) {
-        super(driver);
-    }
+    public MedicationPage(WebDriver driver){super(driver);}
 
     public void MedicRequest(String searchFor, String medications, String prescriptions){
         MedicationPage medicationPage = new MedicationPage(driver);
