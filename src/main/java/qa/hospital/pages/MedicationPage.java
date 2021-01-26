@@ -6,8 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import qa.hospital.utils.AppConfig;
 
+import java.util.List;
 import java.util.Random;
 
 public class MedicationPage extends BasePage {
@@ -50,33 +52,27 @@ public class MedicationPage extends BasePage {
 
     public MedicationPage(WebDriver driver){super(driver);}
 
-    public void MedicRequest(String searchFor, String medications, String prescriptions){
-        MedicationPage medicationPage = new MedicationPage(driver);
-        wait.until(ExpectedConditions.visibilityOfAllElements(patients, medication));
+    public void requestNewItemClick(){
+        waitForElementToBeVisible(medicationSection);
         medicationSection.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(requests, completed, returnMedication, newRequest));
+        waitForElementToBeVisible(newRequest);
         newRequest.click();
+    }
+    public void dataInput(String searchFor,String medications, String prescriptions){
+        waitForElementToBeVisible(patient);
         patient.click();
         patient.sendKeys(searchFor);
-        int i=1;
-        while(i<3){
-            patient.sendKeys(Keys.ARROW_DOWN);
-            i++;
-        }
-        patient.sendKeys(Keys.ENTER);
+        clickArrowDown(6, patients);
+        patients.sendKeys(Keys.ENTER);
         visitDate.click();
-        int c=1;
-        while(c<4) {
-            visitDate.sendKeys(Keys.ARROW_DOWN);
-            c++;
-        }
+        clickArrowDown(5, visitDate);
         visitDate.sendKeys(Keys.ENTER);
         medication.sendKeys(medications);
         medication.sendKeys(Keys.ARROW_DOWN);
         medication.sendKeys(Keys.ENTER);
         prescription.sendKeys(prescriptions);
         prescriptionDate.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(weekDay));
+        waitForElementToBeVisible(weekDay);
         weekDay.click();
         prescriptionDate.sendKeys(Keys.ARROW_LEFT);
         prescriptionDate.sendKeys(Keys.ENTER);
@@ -87,20 +83,30 @@ public class MedicationPage extends BasePage {
         String QRef = Integer.toString(qrf);
         quantit.sendKeys(QR);
         refils.sendKeys(QRef);
+    }
+    public void addRequestClick(){
+        waitForElementToBeVisible(addButton);
         addButton.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(modalWin, oKButton,closeBut));
+    }
+    public boolean assertionAboutPopUp(){
         boolean popUp = (modalWin.isDisplayed() && oKButton.isDisplayed() && closeBut.isDisplayed());
-        if (popUp){
+        if(popUp){
             System.out.print("The pop is displayed after clicking Add button ");
         } else {
             System.out.println("The pop up is not shown after clicking Add button");
         }
-        wait.until(ExpectedConditions.visibilityOfAllElements(modalWin));
+        return popUp;
+    }
+    public boolean confirmationPopClosing(){
+        waitForElementToBeVisible(modalWin);
         oKButton.click();
         try {
             modalWin.isDisplayed();
         } catch (Exception e){
             System.out.println(" The pop up is gone, as expected");
         }
-    }
+        boolean afterClosingPopUp=driver.getCurrentUrl().contains("medication/edit/new");
+        return afterClosingPopUp;
+}
+
 }

@@ -10,7 +10,7 @@ import qa.hospital.utils.AppConfig;
 public class MedicalRequest extends BaseTest {
 
     @Test
-    public void medicationRequest () {
+    public void medicationRequest (boolean afterClosingPopUp) {
         LoginPage loginPage = new LoginPage(driver);
         String validUsername = AppConfig.USERNAME;
         String validPassword = AppConfig.PASSWORD;
@@ -19,7 +19,11 @@ public class MedicalRequest extends BaseTest {
         String searchFor = AppConfig.SEARCHFOR;
         String medication = AppConfig.MEDICATION;
         String prescription = AppConfig.PRESCRIPTION;
-        medicationPage.MedicRequest(searchFor, medication, prescription);
-        Assert.assertTrue(driver.getCurrentUrl().contains("medication/edit/new"));
+        medicationPage.requestNewItemClick();
+        medicationPage.dataInput(searchFor, medication, prescription);
+        medicationPage.addRequestClick();
+        medicationPage.assertionAboutPopUp();
+        medicationPage.confirmationPopClosing();
+        Assert.assertTrue(afterClosingPopUp);
     }
 }
