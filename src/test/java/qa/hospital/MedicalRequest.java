@@ -10,7 +10,7 @@ import qa.hospital.utils.AppConfig;
 public class MedicalRequest extends BaseTest {
 
     @Test
-    public void medicationRequest (boolean afterClosingPopUp) {
+    public void medicationRequest (boolean afterClosingPopUp, boolean popUp) {
         LoginPage loginPage = new LoginPage(driver);
         String validUsername = AppConfig.USERNAME;
         String validPassword = AppConfig.PASSWORD;
@@ -25,5 +25,6 @@ public class MedicalRequest extends BaseTest {
         medicationPage.assertionAboutPopUp();
         medicationPage.confirmationPopClosing();
         Assert.assertTrue(afterClosingPopUp);
+        Assert.assertTrue(popUp);
     }
 }
