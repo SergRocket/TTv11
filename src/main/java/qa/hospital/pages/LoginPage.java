@@ -3,6 +3,7 @@ package qa.hospital.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
     @FindBy(css = "#identification")
@@ -13,6 +14,10 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
     @FindBy(css = "div[role='alert']")
     private WebElement errorMassage;
+    /*@FindBy(css = )
+
+    @FindBy(css = )
+*/
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -29,4 +34,12 @@ public class LoginPage extends BasePage {
         waitForElementToBeVisible(errorMassage);
         return errorMassage.getText();
     }
+
+    public void logOut(){
+        /*wait.until(ExpectedConditions.visibilityOfAllElements(cogWheel));
+        cogWheel.click();
+        logOut.click();*/
+    }
+
+
 }

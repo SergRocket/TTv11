@@ -9,10 +9,10 @@ public class InvalidLogin extends BaseTest {
     @Test
     public void invalidLogin() {
         LoginPage loginPage = new LoginPage(driver);
-
-        loginPage.login(AppConfig.INVALIDUSERNAME, AppConfig.INVALIDPASSWORD);
+        String invalidUsername = AppConfig.INVALIDUSERNAME;
+        String invalidPassword = AppConfig.INVALIDPASSWORD;
+        loginPage.login(invalidUsername, invalidPassword);
         final String error = loginPage.getErrorMessage();
-
         Assert.assertEquals(error, "Username or password is incorrect.");
         Assert.assertTrue(driver.getCurrentUrl().contains("#/login"));
     }

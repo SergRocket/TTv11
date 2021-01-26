@@ -1,10 +1,10 @@
-package HospitalTests;
+package qa.hospital;
 
-import HospitalPages.pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.AppConfig;
+import qa.hospital.BaseTest;
+import qa.hospital.pages.LoginPage;
+import qa.hospital.utils.AppConfig;
 
 public class Logout extends BaseTest {
     @Test
@@ -13,7 +13,7 @@ public class Logout extends BaseTest {
         String validUsername = AppConfig.USERNAME;
         String validPassword = AppConfig.PASSWORD;
         loginpage.login(validUsername, validPassword);
-        loginpage.logout();
+        loginpage.logOut();
         wait.until(ExpectedConditions.urlContains("#/login"));
     }
 }

@@ -1,102 +1,108 @@
 package qa.hospital.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import qa.hospital.utils.AppConfig;
+
+import java.util.Random;
 
 public class MedicationPage extends BasePage {
-    private By medicationSection = By.cssSelector("#ember767");
-    private By requests = By.cssSelector("#ember2177");
-    private By completed = By.cssSelector("#ember2180");
-    private By newRequest = By.cssSelector("#ember2495");
-    private By returnMedication = By.cssSelector("#ember2239");
-    private By patients = By.cssSelector("#ember727");
-    private By patient = By.cssSelector("#patientTypeAhead-ember2546");
-    private By visitDate = By.cssSelector("#visit-ember2591");
-    private By medication = By.cssSelector("#ember767");
-    private By prescription = By.cssSelector("#prescription-ember2645");
-    private By prescriptionDate = By.cssSelector("#display_prescriptionDate-ember2668");
-    private By weekDay = By.cssSelector("body > div.pika-single.is-bound.is-hidden > div");
-    private By quantity = By.cssSelector("#quantity-ember2687");
-    private By refils = By.cssSelector("#refills-ember2694");
-    private By addButton = By.cssSelector("#ember2509 > div > div.panel-footer > button.btn.btn-primary.on-white.disabled-btn");
-    private By modalWin = By.cssSelector("#ember2963 > div > div > div");
-    private By closeBut = By.cssSelector("#ember2963 > div > div > div > div.modal-header > button > span");
-    private By oKButton = By.cssSelector("#ember2963 > div > div > div > div.modal-footer > button");
+    @FindBy(css="#ember767")
+    private WebElement medicationSection;
+    @FindBy(css="#ember2177")
+    private WebElement requests;
+    @FindBy(css="#ember2180")
+    private WebElement completed;
+    @FindBy(css="#ember2495")
+    private WebElement newRequest;
+    @FindBy(css="#ember2239")
+    private WebElement returnMedication;
+    @FindBy(css="#ember727")
+    private WebElement patients;
+    @FindBy(css="#patientTypeAhead-ember2546")
+    private WebElement patient ;
+    @FindBy(css="#visit-ember2591")
+    private WebElement visitDate;
+    @FindBy(css="#ember767")
+    private WebElement medication;
+    @FindBy(css="#prescription-ember2645")
+    private WebElement prescription;
+    @FindBy(css="#display_prescriptionDate-ember2668")
+    private WebElement prescriptionDate;
+    @FindBy(css="body > div.pika-single.is-bound.is-hidden > div")
+    private WebElement weekDay;
+    @FindBy(css="#quantity-ember2687")
+    private WebElement quantit;
+    @FindBy(css="#refills-ember2694")
+    private WebElement refils;
+    @FindBy(css="#ember2509 > div > div.panel-footer > button.btn.btn-primary.on-white.disabled-btn")
+    private WebElement addButton;
+    @FindBy(css="#ember2963 > div > div > div")
+    private WebElement modalWin;
+    @FindBy(css="#ember2963 > div > div > div > div.modal-header > button > span")
+    private WebElement closeBut;
+    @FindBy(css="#ember2963 > div > div > div > div.modal-footer > button")
+    private WebElement oKButton;
 
     public MedicationPage(WebDriver driver) {
         super(driver);
     }
 
-    public WebElement medSec() {
-        return driver.findElement(medicationSection);
-    }
-
-    public WebElement reque() {
-        return driver.findElement(requests);
-    }
-
-    public WebElement completed() {
-        return driver.findElement(completed);
-    }
-
-    public WebElement newRequest() {
-        return driver.findElement(newRequest);
-    }
-
-    public WebElement returnMedic() {
-        return driver.findElement(returnMedication);
-    }
-
-    public WebElement patient() {
-        return driver.findElement(patient);
-    }
-
-    public WebElement dateVisit() {
-        return driver.findElement(visitDate);
-    }
-
-    public WebElement medication() {
-        return driver.findElement(medication);
-    }
-
-    public WebElement prescription() {
-        return driver.findElement(prescription);
-    }
-
-    public WebElement prescrDate() {
-        return driver.findElement(prescriptionDate);
-    }
-
-    public WebElement quantity() {
-        return driver.findElement(quantity);
-    }
-
-    public WebElement refils() {
-        return driver.findElement(refils);
-    }
-
-    public WebElement addButton() {
-        return driver.findElement(addButton);
-    }
-
-    public WebElement weekDay() {
-        return driver.findElement(weekDay);
-    }
-
-    public WebElement modalWindow() {
-        return driver.findElement(modalWin);
-    }
-
-    public WebElement closeBut() {
-        return driver.findElement(closeBut);
-    }
-
-    public WebElement oKBut() {
-        return driver.findElement(oKButton);
-    }
-
-    public WebElement patients() {
-        return driver.findElement(patients);
+    public void MedicRequest(String searchFor, String medications, String prescriptions){
+        MedicationPage medicationPage = new MedicationPage(driver);
+        wait.until(ExpectedConditions.visibilityOfAllElements(patients, medication));
+        medicationSection.click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(requests, completed, returnMedication, newRequest));
+        newRequest.click();
+        patient.click();
+        patient.sendKeys(searchFor);
+        int i=1;
+        while(i<3){
+            patient.sendKeys(Keys.ARROW_DOWN);
+            i++;
+        }
+        patient.sendKeys(Keys.ENTER);
+        visitDate.click();
+        int c=1;
+        while(c<4) {
+            visitDate.sendKeys(Keys.ARROW_DOWN);
+            c++;
+        }
+        visitDate.sendKeys(Keys.ENTER);
+        medication.sendKeys(medications);
+        medication.sendKeys(Keys.ARROW_DOWN);
+        medication.sendKeys(Keys.ENTER);
+        prescription.sendKeys(prescriptions);
+        prescriptionDate.click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(weekDay));
+        weekDay.click();
+        prescriptionDate.sendKeys(Keys.ARROW_LEFT);
+        prescriptionDate.sendKeys(Keys.ENTER);
+        Random rand = new Random();
+        int qr = rand.nextInt(1)+3;
+        int qrf = rand.nextInt(5)+8;
+        String QR = Integer.toString(qr);
+        String QRef = Integer.toString(qrf);
+        quantit.sendKeys(QR);
+        refils.sendKeys(QRef);
+        addButton.click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(modalWin, oKButton,closeBut));
+        boolean popUp = (modalWin.isDisplayed() && oKButton.isDisplayed() && closeBut.isDisplayed());
+        if (popUp){
+            System.out.print("The pop is displayed after clicking Add button ");
+        } else {
+            System.out.println("The pop up is not shown after clicking Add button");
+        }
+        wait.until(ExpectedConditions.visibilityOfAllElements(modalWin));
+        oKButton.click();
+        try {
+            modalWin.isDisplayed();
+        } catch (Exception e){
+            System.out.println(" The pop up is gone, as expected");
+        }
     }
 }

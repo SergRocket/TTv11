@@ -1,8 +1,12 @@
-package HospitalTests;
-import HospitalPages.pages.LoginPage;
+package qa.hospital;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import utils.AppConfig;
+
+import qa.hospital.pages.LoginPage;
+import qa.hospital.utils.AppConfig;
 
 public class ValidLogin extends BaseTest {
 
