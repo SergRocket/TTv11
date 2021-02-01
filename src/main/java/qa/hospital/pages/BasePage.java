@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import qa.hospital.utils.AppConfig;
 
 import java.time.Duration;
-import java.util.List;
 
 public class BasePage {
     protected WebDriver driver;
@@ -25,11 +24,14 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void clickArrowDown(int i, WebElement element){
-        MedicationPage medicationPage = new MedicationPage(driver);
-        while(i<10){
-            element.click();
-            i++;
+    protected void clickElement(WebElement element) {
+        waitForElementToBeVisible(element);
+        element.click();
+    }
+
+    public void clickArrowDown(int times, WebElement element) {
+        for (int i = 0; i < times; i++) {
+            element.sendKeys(Keys.ARROW_DOWN);
         }
     }
 }

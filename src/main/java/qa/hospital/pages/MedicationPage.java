@@ -59,8 +59,7 @@ public class MedicationPage extends BasePage {
         newRequest.click();
     }
     public void dataInput(String searchFor,String medications, String prescriptions){
-        waitForElementToBeVisible(patient);
-        patient.click();
+        clickElement(patient);
         patient.sendKeys(searchFor);
         clickArrowDown(6, patients);
         patients.sendKeys(Keys.ENTER);
@@ -88,14 +87,8 @@ public class MedicationPage extends BasePage {
         waitForElementToBeVisible(addButton);
         addButton.click();
     }
-    public boolean assertionAboutPopUp(){
-        boolean popUp = (modalWin.isDisplayed() && oKButton.isDisplayed() && closeBut.isDisplayed());
-        if(popUp){
-            System.out.print("The pop is displayed after clicking Add button ");
-        } else {
-            System.out.println("The pop up is not shown after clicking Add button");
-        }
-        return popUp;
+    public boolean isPopupDisplayed(){
+        return modalWin.isDisplayed() && oKButton.isDisplayed() && closeBut.isDisplayed();
     }
     public boolean confirmationPopClosing(){
         waitForElementToBeVisible(modalWin);
